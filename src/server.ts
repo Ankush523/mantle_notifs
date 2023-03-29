@@ -1,10 +1,10 @@
 const ethers = require("ethers");
 const address = "0x816fe884C2D2137C4F210E6a1d925583fa4A917d";
-const url = "wss://ws.testnet.mantle.xyz";
+const mantleurl = "wss://ws.testnet.mantle.xyz";
 const polygonurl = "wss://polygon-mumbai.g.alchemy.com/v2/B_5czQpQeXc_6pZlC-wDa_-QD1xhTI86";
 const init = function () {
   
-  const customWsProvider = new ethers.WebSocketProvider(polygonurl);
+  const customWsProvider = new ethers.WebSocketProvider(mantleurl);
 
   customWsProvider.on("pending", (tx : string) => {
     customWsProvider.getTransaction(tx).then(function (transaction : any) {
@@ -21,7 +21,7 @@ const init = function () {
   // });
 
   customWsProvider.websocket.on("error", async () => {
-    console.log(`Unable to connect to ${polygonurl} retrying in 3s...`);
+    console.log(`Unable to connect to ${mantleurl} retrying in 3s...`);
     setTimeout(init, 3000);
   });
 
