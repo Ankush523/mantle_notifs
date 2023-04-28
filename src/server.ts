@@ -3,15 +3,18 @@
 // const ethers = require("ethers");
 // const address = "0x816fe884C2D2137C4F210E6a1d925583fa4A917d";
 // const mantleurl = "wss://ws.testnet.mantle.xyz";
-// const polygonurl = "wss://polygon-mumbai.g.alchemy.com/v2/B_5czQpQeXc_6pZlC-wDa_-QD1xhTI86";
+// const polygonurl = "wss://polygon-mainnet.g.alchemy.com/v2/s5BwByPukIVosEOZEfXU68neTN4WsDOy";
 // const init = function () {
   
 //   const customWsProvider = new ethers.WebSocketProvider(polygonurl);
 
 //   customWsProvider.on("pending", (tx : string) => {
 //     customWsProvider.getTransaction(tx).then(function (transaction : any) {
-//       if (transaction.from == address || transaction.to == address) {
-//         console.log(transaction);
+//       if(transaction !== null)
+//       {
+//         if (transaction.from == address || transaction.to == address) {
+//           console.log(transaction);
+//         }
 //       }
 //     });
 //   });
@@ -22,12 +25,12 @@
 //for confirmed transactions
 
 import { ethers } from 'ethers';
-const provider = new ethers.WebSocketProvider('wss://polygon-mumbai.g.alchemy.com/v2/B_5czQpQeXc_6pZlC-wDa_-QD1xhTI86');
-
+const provider = new ethers.WebSocketProvider('wss://polygon-mainnet.g.alchemy.com/v2/s5BwByPukIVosEOZEfXU68neTN4WsDOy');
+const address = "0x816fe884C2D2137C4F210E6a1d925583fa4A917d";
 async function getConfirmedTransactionDetails(txHash: string) {
   const tx = await provider.getTransaction(txHash);
   if (tx && tx.blockNumber) {
-    if(tx.from == "0x816fe884C2D2137C4F210E6a1d925583fa4A917d" || tx.to == "0x816fe884C2D2137C4F210E6a1d925583fa4A917d")
+    if(tx.from == address || tx.to == address)
     {
       console.log(tx);
     }
